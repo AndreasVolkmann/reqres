@@ -1,8 +1,8 @@
 # Requirements
 
-* Read request files
-* Transform content
-* Insert into database
-* Fetch responses
-* Transform
-* Write to file
+* [x] Read request files
+* [x] Transform content
+* [x] Insert into database
+* [x] Fetch responses
+* [ ] Transform
+* [ ] Write to file

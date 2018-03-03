@@ -10,12 +10,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 type request struct {
 	id   int
 	user string
@@ -23,11 +17,10 @@ type request struct {
 	date string
 }
 
+var requestFilePath = "D:\\Dev\\go\\src\\github.com\\AndreasVolkmann\\reqres\\request.csv"
 
-
-func main() {
-	path := "D:\\Dev\\go\\src\\github.com\\AndreasVolkmann\\reqres\\request.csv"
-	lines, err := buffered(path)
+func handleRequests() {
+	lines, err := buffered(requestFilePath)
 	check(err)
 	fmt.Println("Requests:")
 	requests := transformLines(lines)
@@ -39,7 +32,7 @@ func main() {
 }
 
 func insertRequests(requests []request) {
-	db, err := sql.Open("mysql", "test:test@/reqres")
+	db, err := sql.Open(driverName, dataSourceName)
 	check(err)
 	defer db.Close()
 
